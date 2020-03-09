@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 
@@ -8,75 +9,167 @@
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet" />
    <link href="style.css" rel="stylesheet">
+
+   <link rel="icon" type="image/png" href="images/favicon.ico" />
+	<link rel="shortcut icon" type="image/png" href="images/favicon.png" />
 </head>
 
 <body>
-
    <section>
       <div class="container">
          <div class="cart">
-            <div class="col-md-12 col-lg-10 mx-auto">
+            <div class="col-lg-12 col-xl-10 mx-auto">
                <div class="cart-item">
                   <div class="row">
-                     <div class="col-md-7 center-item">
+                     <div class="col-lg-6 center-item justify-content-lg-start">
                         <img src="images/product-1.png" alt="">
                         <h5>iPhone 11 128GB Black</h5>
-                     </div>
+                     </div> 
 
-                     <div class="col-md-5 center-item">
+                     <div class="col-lg-6 mt-4 mt-lg-0 center-item">
+                        <h5 class="mx-3 ml-lg-auto">$<span class="price">1219</span></h5>
                         <div class="input-group number-spinner">
-                           <button class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input type="text" class="form-control text-center" value="1">
-                           <button class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button class="btn btn-default btnMinus"><i class="fas fa-minus"></i></button>
+                           <input type="text" class="form-control text-center" value="1" min="1" />
+                           <button class="btn btn-default btnPlus"><i class="fas fa-plus"></i></button>
                         </div>
-                        <h5>$1219</h5>
+                        <h5 class="mx-3">$<span class="itemTotalPrice">1219</span></h5>
                         <img src="images/remove.png" alt="" class="remove-item">
-                     </div>
-                  </div>
-               </div>
+                     </div> 
+                  </div> 
+               </div> 
 
                <div class="cart-item">
                   <div class="row">
-                     <div class="col-md-7 center-item mx-auto">
+                     <div class="col-lg-6 center-item justify-content-lg-start">
                         <img src="images/product-2.png" alt="">
                         <h5>iPhone 11 Silicone Case - Black</h5>
-                     </div>
-                     <div class="col-md-5 center-item">
+                     </div> 
+
+                     <div class="col-lg-6 mt-4 mt-lg-0 center-item">
+                        <h5 class="mx-3 ml-lg-auto">$<span class="price">59</span></h5>
                         <div class="input-group number-spinner">
-                           <button class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input type="text" class="form-control text-center" value="1">
-                           <button class="btn btn-default"><i class="fas fa-plus"></i></button>
-
+                           <button class="btn btn-default btnMinus"><i class="fas fa-minus"></i></button>
+                           <input type="text" class="form-control text-center" value="1" min="1" />
+                           <button class="btn btn-default btnPlus"><i class="fas fa-plus"></i></button>
                         </div>
-                        <h5>$59</h5>
+                        <h5 class="mx-3">$<span class="itemTotalPrice">59</span></h5>
                         <img src="images/remove.png" alt="" class="remove-item">
-                     </div>
-                  </div>
-               </div>
+                     </div> 
+                  </div> 
+               </div> 
 
-               <div class="cart-item">
+               <div class="totalContainer">
                   <div class="row">
-
-                     <div class="col-md-8">
-                        <h5>Subtotal: </h5>
+                     <div class="col">
+                        <h5 style="margin-bottom: 18px !important;">Add Tax in %:</h5>
+                        <h5>Subtotal:</h5>
                         <h5>Tax:</h5>
-                        <h5>Total:</h5>
-                     </div>
+                        <hr />
+                        <h5>Grand Total:</h5>
+                     </div> 
 
-                     <div class="col-md-4 status">
-                        <h5>$1,278</h5>
-                        <h5>$0</h5>
-                        <h5>$1,278</h5>
-                     </div>
-                  </div>
-               </div>
+                     <div class="col status">
+                        <input type="number" name="tax" id="taxInput" min="0" max="100" value="10" oninput="updateTaxInput(this.value)" onchange="updateTaxInput(this.value)" class="form-control float-right" style="min-width: 100px;">
+                        <div class="clearfix"></div>
+
+                        <h5>$<span id="subTotal">1278.00</span></h5>
+                        <h5>$<span id="taxTotal">00</span></h5>
+                        <hr />
+                        <h5>$ <span id="grandTotal">1405.8‬0</span></h5>
+                     </div> 
+                  </div> 
+               </div> 
                <div class="col-md-12 pt-4 pb-4">
-                  <button type="button" class="btn btn-success check-out">Check Out</button>
-               </div>
-            </div>
-         </div>
-      </div>
-   </section>
-</body>
+                  <button type="button" class="btn btn-success check-out" data-toggle="modal" data-target="#checkoutModal">Check Out</button>
 
+                  <div id="checkoutModal" class="modal fade">
+                     <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                           <div class="modal-header">
+                              <h3>Checkout</h3>
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                           </div>
+                           <div class="modal-body">
+                              <h4 class="text-center">Billing Address</h4>
+                              
+                              <form action="#">
+                                 <div class="form-group">
+                                    <label class="form-control-label" for="name">Full Name:</label>
+                                    <input class="form-control" type="text" name="name"/>
+                                 </div>
+
+                                 <div class="form-group">
+                                    <label class="form-control-label" for="email">E-mail:</label>
+                                    <input class="form-control" type="text" name="email"/>
+                                 </div>
+
+                                 <div class="form-group">
+                                    <label class="form-control-label" for="country">Country:</label>
+
+                                    <select class="form-control" name="country">
+                                       <option value="BD">Bangladesh</option>
+                                       <option value="BT">Bhutan</option>
+                                       <option value="CN">China</option>
+                                       <option value="FR">France</option>
+                                       <option value="GR">Greece</option>
+                                       <option value="IN">India</option>
+                                       <option value="NZ">New Zealand</option>
+                                       <option value="PK">Pakistan</option>
+                                       <option value="CH">Switzerland</option>
+                                       <option value="US">United States</option>
+                                       <option value="CA">Canada</option>
+                                    </select>
+                                 </div>
+                                 
+
+                                 <div class="form-group">
+                                    <label class="form-control-label" for="address1">Address 1:</label>
+                                    <input class="form-control" type="text" name="address1"/>
+                                 </div>
+
+                                 <div class="form-group">
+                                    <label class="form-control-label" for="address2">Address 2:</label>
+                                    <input class="form-control" type="text" name="address2"/>
+                                 </div>
+
+                                 <div class="form-group">
+                                    <label class="form-control-label" for="city">City:</label>
+                                    <input class="form-control" type="text" name="city"/>
+                                 </div>
+
+                                 <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                       <label class="form-control-label" for="state">State:</label>
+                                       <input class="form-control" type="text" name="state"/>
+                                    </div>
+                                    
+                                    <div class="form-group col-md-6">
+                                       <label class="form-control-label" for="zipCode">Zip Code:</label>
+                                       <input class="form-control" type="text" name="zipCode"/>
+                                    </div>
+                                 </div>
+                  
+                              </form>
+                           </div>
+
+                           <div class="modal-footer">
+                              <button type="button" class="btn btn-success">Next steps &rarr;</button>
+                           </div>
+                        </div> 
+                     </div> 
+                  </div> 
+               </div> 
+            </div>
+         </div> 
+      </div> 
+   </section>
+
+   <footer>
+      <p class="text-center">&copy; 2020 Shopping Cart | MD.SHAHJAHAN </p>
+   </footer>
+   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+   <script src="js/main.js"></script>
+</body>
 </html>
